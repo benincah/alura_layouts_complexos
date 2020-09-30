@@ -15,6 +15,8 @@ import br.com.alura.aluraviagens.R;
 import br.com.alura.aluraviagens.model.Pacote;
 import br.com.alura.aluraviagens.util.MoedaUtil;
 
+import static br.com.alura.aluraviagens.ui.activity.ActivityConstantes.CHAVE_PACOTE;
+
 public class PagamentoActivity extends AppCompatActivity {
 
     public static final String TITULO_APPBAR = "Pagamento";
@@ -26,11 +28,9 @@ public class PagamentoActivity extends AppCompatActivity {
         setTitle(TITULO_APPBAR);
 
         Intent intent = getIntent();
-        if(intent.hasExtra("pacote")){
-            final Pacote pacote = (Pacote) intent.getSerializableExtra("pacote");
-
+        if(intent.hasExtra(CHAVE_PACOTE)){
+            final Pacote pacote = (Pacote) intent.getSerializableExtra(CHAVE_PACOTE);
             mostraPreco(pacote);
-
             configuraBotao(pacote);
         }
     }
@@ -48,7 +48,7 @@ public class PagamentoActivity extends AppCompatActivity {
     private void vaiParaResumoCompra(Pacote pacote) {
         Intent intent = new Intent(PagamentoActivity.this,
                 ResumoCompraActivity.class);
-        intent.putExtra("pacote", pacote);
+        intent.putExtra(CHAVE_PACOTE, pacote);
         startActivity(intent);
     }
 
